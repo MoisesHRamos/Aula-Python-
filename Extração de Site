@@ -1,0 +1,34 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from time import sleep
+
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get('https://books.toscrape.com/')
+sleep(3)
+livros = driver.find_elements(By.TAG_NAME, 'a')
+for indice,livro in enumerate(livros[54:93:2]):
+    if livro.get_attribute('title') != '':
+        livro.click()
+        nome_livro = driver.find_element(By.XPATH,  '//*[@id="content_inner"]/article/div[1]/div[2]/h1')
+        nome_livro.get_attribute('title')
+        valor_livro = driver.find_element(By.XPATH,  '//*[@id="content_inner"]/article/div[1]/div[2]/p[1]')
+        valor_livro.get_attribute('title')
+        estoque_livro = driver.find_element(By.XPATH,  '//*[@id="content_inner"]/article/div[1]/div[2]/p[2]')
+        estoque_livro.get_attribute('title')
+        print('*******Livro*********')
+        print('Titulo: ', nome_livro.text)
+        print('Valor: ',valor_livro.text)
+        print(estoque_livro.text)
+        print('--------------')
+        driver.back()
+    
+
+
+
+
+
+
+
+
+input ('//')
